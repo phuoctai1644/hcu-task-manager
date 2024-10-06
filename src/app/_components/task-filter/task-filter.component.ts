@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgClass, NgFor } from '@angular/common';
-import { TaskStatus } from '../../_models/task';
-import { FilterItem, SelectOption } from '../../_models';
+import { TaskStatus } from '../../_models/task.model';
+import { FilterObject, SelectOption } from '../../_models';
 
 @Component({
   selector: 'app-task-filter',
@@ -11,28 +11,33 @@ import { FilterItem, SelectOption } from '../../_models';
   styleUrl: './task-filter.component.scss'
 })
 export class TaskFilterComponent {
-  statusFilter: FilterItem<SelectOption<TaskStatus>> = {
-    label: 'Task Statuses',
-    items: [
-      { label: 'All' },
-      { label: 'Completed', value: TaskStatus.COMPLETED },
-      { label: 'Incomplete', value: TaskStatus.INCOMPLETE },
-    ],
-    selecteds: [],
-  };
+  @Output() filterChange = new EventEmitter<FilterObject>();
+
+  filter: FilterObject = {
+    status: {
+      label: 'Task Statuses',
+      items: [
+        { label: 'All' },
+        { label: 'Completed', value: TaskStatus.COMPLETED },
+        { label: 'Incomplete', value: TaskStatus.INCOMPLETE },
+      ],
+      selecteds: [],
+    },
+  }
 
   constructor() { }
 
   onStatusChanged(status: SelectOption<TaskStatus>) {
-    this.statusFilter.selecteds = [status];
+    this.filter['status'].selecteds = [status];
+    this.filterChange.next(this.filter);
   }
 
   isActiveStatus(status?: TaskStatus) {
-    const selecteds = this.statusFilter.selecteds;
-    if (!status && !selecteds.length) {
+    const selecteds = this.filter['status'].selecteds;
+    if (!status && !selecteds?.length) {
       return true;
     }
 
-    return this.statusFilter.selecteds.find(el => el.value === status);
+    return selecteds?.find(el => el.value === status);
   }
 }

@@ -4,7 +4,7 @@
     <div class="status-item"
       [ngClass]="{'active': isActiveStatus(status.value) }"
       (click)="onStatusChanged(status)"
-      *ngFor="let status of statusFilter.items"
+      *ngFor="let status of filter['status'].items"
     >
       {{ status.label }}
     </div>

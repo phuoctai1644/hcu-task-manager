@@ -1,6 +1,10 @@
 .task-form-wrapper {
   position: relative;
 
+  &:hover .direction {
+    visibility: visible;
+  }
+
   input {
     outline: none;
     border: none;

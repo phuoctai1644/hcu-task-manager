@@ -1,7 +1,7 @@
 <div class="app-wrapper">
-  <app-task-filter></app-task-filter>
+  <app-task-filter (filterChange)="onFilterChanged($event)"></app-task-filter>
   <div class="mt-4">
-    <app-task-form></app-task-form>
+    <app-task-form (addTask)="onTaskAdded($event)"></app-task-form>
   </div>
   <div class="task-list mt-4">
     <app-task-list></app-task-list>

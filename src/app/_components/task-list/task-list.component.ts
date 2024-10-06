@@ -1,7 +1,8 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
-import { Task, TaskStatus } from '../../_models';
 import { NgFor } from '@angular/common';
+import { Task } from '../../_models';
+import { TaskService } from '../../_services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,11 +10,20 @@ import { NgFor } from '@angular/common';
   imports: [TaskComponent, NgFor],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
-  encapsulation: ViewEncapsulation.None,
 })
-export class TaskListComponent {
-  tasks: Task[] = [
-    { id: 1, name: 'The first task', status: TaskStatus.INCOMPLETE },
-    { id: 2, name: 'The second task', status: TaskStatus.COMPLETED },
-  ];
+export class TaskListComponent implements OnInit {
+  tasks: Task[] = [];
+
+  constructor(private _task: TaskService) { }
+
+  ngOnInit(): void {
+    this._task.getTasks().subscribe({
+      next: response => {
+        this.tasks = response;
+      },
+      error: (error: string) => {
+        console.error(error);
+      }
+    })
+  }
 }

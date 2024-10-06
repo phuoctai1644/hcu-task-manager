@@ -3,6 +3,18 @@ export interface Task {
   id: number;
   dueDate?: string;
   status: TaskStatus | string;
+  createdAt?: string;
+  modifiedAt?: string;
+  // ...
+}
+
+export interface TaskRequest {
+  name: string;
+  // ...
+}
+
+export interface TaskSearchParams {
+  status: TaskStatus,
   // ...
 }
 
