@@ -10,6 +10,7 @@ export interface Task {
 
 export interface TaskRequest {
   name: string;
+  status: TaskStatus,
   // ...
 }
 

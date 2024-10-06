@@ -1,29 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { AsyncPipe, NgFor } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { TaskComponent } from '../task/task.component';
-import { NgFor } from '@angular/common';
 import { Task } from '../../_models';
-import { TaskService } from '../../_services/task.service';
+import { AppState, selectTasks } from '../../_stores';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [TaskComponent, NgFor],
+  imports: [TaskComponent, NgFor, AsyncPipe],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
+  tasks$!: Observable<Task[]>;
 
-  constructor(private _task: TaskService) { }
+  constructor(
+    private _store: Store<AppState>,
+  ) { }
 
   ngOnInit(): void {
-    this._task.getTasks().subscribe({
-      next: response => {
-        this.tasks = response;
-      },
-      error: (error: string) => {
-        console.error(error);
-      }
-    })
+    this.tasks$ = this._store.select(selectTasks);
   }
 }

@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Task, TaskStatus } from '../../_models';
 import { NgClass } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { AppActions, AppState } from '../../_stores';
 
 @Component({
   selector: 'app-task',
@@ -14,7 +16,7 @@ export class TaskComponent implements OnChanges {
   selectedTask!: Partial<Task>;
   taskStatus = TaskStatus;
 
-  constructor() { }
+  constructor(private _store: Store<AppState>) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.task) {
@@ -39,5 +41,12 @@ export class TaskComponent implements OnChanges {
     this.patchValue('status', this.selectedTask.status);
   }
 
-  patchValue(type: string, value: any) { }
+  patchValue(type: string, value: any) {
+    const payload = { [type]: value };
+
+    this._store.dispatch(AppActions.updateTask({
+      id: this.task.id,
+      payload
+    }));
+  }
 }

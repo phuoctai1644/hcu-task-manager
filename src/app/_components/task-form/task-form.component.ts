@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TaskRequest } from '../../_models';
+import { TaskRequest, TaskStatus } from '../../_models';
 
 @Component({
   selector: 'app-task-form',
@@ -20,11 +20,16 @@ export class TaskFormComponent {
   }
 
   onSubmit() {
-    const newTask: TaskRequest = {
+    if (!this.taskName) {
+      return;
+    }
+
+    const taskRequest: TaskRequest = {
       name: this.taskName,
+      status: TaskStatus.INCOMPLETE,
       // Can add more request here in the future...
     }
     this.taskName = '';
-    this.addTask.next(newTask);
+    this.addTask.next(taskRequest);
   }
 }

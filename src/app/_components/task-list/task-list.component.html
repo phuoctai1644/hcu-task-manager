@@ -1,6 +1,6 @@
 
 <div class="task-list-wrapper">
-  <div class="task-item" *ngFor="let task of tasks">
+  <div class="task-item" *ngFor="let task of tasks$ | async">
     <app-task [task]="task"></app-task>
   </div>
 </div>

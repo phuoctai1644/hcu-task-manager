@@ -1,4 +1,4 @@
 <div class="task-form-wrapper">
   <input type="text" [(ngModel)]="taskName" placeholder="Create new task..." (keyup)="onKeyup($event)">
-  <div class="direction" (click)="onSubmit()">Enter</div>
+  <button class="direction" (click)="onSubmit()" [disabled]="!taskName">Enter</button>
 </div>
