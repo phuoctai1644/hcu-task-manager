@@ -1,1 +1,8 @@
 @import './reset.scss';
+@import './utils.scss';
+
+html {
+  --border: #e5e5e7;
+  --primary: #6fa8dc;
+  --background: #f8f8f8;
+}

@@ -1,0 +1,5 @@
+.task-list-wrapper {
+  .task-item ~ .task-item {
+    margin-top: 0.25rem;
+  }
+}

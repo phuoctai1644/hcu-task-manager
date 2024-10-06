@@ -1,5 +1,12 @@
 @import './styles/main.scss';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 html {
-  font-size: 14px;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  color: #0e1111;
+  background-color: var(--background);
 }

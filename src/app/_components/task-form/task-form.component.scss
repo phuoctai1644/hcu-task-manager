@@ -1,0 +1,35 @@
+.task-form-wrapper {
+  position: relative;
+
+  input {
+    outline: none;
+    border: none;
+    background-color: var(--border);
+    width: calc(100% - 1.5rem);
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+
+    &:focus + .direction {
+      visibility: visible;
+    }
+  }
+
+  .direction {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 4rem;
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 0.25rem;
+    cursor: pointer;
+    visibility: hidden;
+  }
+}

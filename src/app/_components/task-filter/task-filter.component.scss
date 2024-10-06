@@ -1,0 +1,22 @@
+.task-filter-wrapper {
+  .status-list {
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+
+    .status-item {
+      min-width: 5rem;
+      padding: 0.5rem 0.85rem;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover, &.active {
+        color: white;
+        border-color: var(--primary);
+        background-color: var(--primary);
+      }
+    }
+  }
+}

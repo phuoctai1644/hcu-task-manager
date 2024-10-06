@@ -1,0 +1,12 @@
+<div class="task-filter-wrapper">
+  <!-- Status Filter -->
+  <div class="status-list">
+    <div class="status-item"
+      [ngClass]="{'active': isActiveStatus(status.value) }"
+      (click)="onStatusChanged(status)"
+      *ngFor="let status of statusFilter.items"
+    >
+      {{ status.label }}
+    </div>
+  </div>
+</div>

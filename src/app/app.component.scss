@@ -1,0 +1,12 @@
+.app-wrapper {
+  margin: 2rem auto;
+  width: 40vw;
+  height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+
+  .task-list {
+    flex: 1;
+    overflow: overlay;
+  }
+}
