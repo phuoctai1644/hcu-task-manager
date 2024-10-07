@@ -32,7 +32,7 @@ Before you begin, ensure you have met the following requirements:
 
   ```
    git clone https://github.com/phuoctai1644/hcu-task-manager.git
-   cd task-manager
+   cd hcu-task-manager
   ```
 
 2. **Install dependencies:**
