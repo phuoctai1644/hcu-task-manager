@@ -1,27 +1,57 @@
-# HcuTaskManager
+# HCU Task Manager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+## Overview
 
-## Development server
+Task Manager is a Angular application designed to manage tasks efficiently. This project includes features such as task creation, deletion, and updating task names,...
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- Task creation
+- Task deletion
+- Task updating (status, name)
+- Filter tasks by status
+- State management using NgRx
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation and Running the Project Locally
 
-## Build
+### Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Before you begin, ensure you have met the following requirements:
 
-## Running unit tests
+- Node.js and npm installed. You can download them from [Node.js official website](https://nodejs.org/).
+- Git installed. You can download it from [Git official website](https://git-scm.com/).
+- **Angular CLI installed globally:** You can install it using the following command:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  ```
+  npm install -g @angular/cli
+  ```
 
-## Running end-to-end tests
+### Steps
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. **Clone the repository:**
 
-## Further help
+  ```
+   git clone https://github.com/phuoctai1644/hcu-task-manager.git
+   cd task-manager
+  ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+2. **Install dependencies:**
+  ```
+  npm install
+  ```
+
+3. **Run the mock API:**
+  ```
+  npm run mock-api
+  ```
+  This command will start the mock API server on http://localhost:3000/.
+
+4. **Run the application:**
+
+  ```
+  ng serve
+  ```
+
+### Additional Features
+- **Task Filtering:** Tasks can be filtered based on their status (e.g., COMPLETED, INCOMPLETE).
+- **State Persistence:** The application state is managed using NgRx, ensuring a consistent state across the application.
