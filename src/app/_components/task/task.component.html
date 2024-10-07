@@ -1,13 +1,13 @@
 <div class="task-wrapper" [ngClass]="{'completed': selectedTask.status === taskStatus.COMPLETED }">
   <div class="checkbox-wrapper-31">
-    <input type="checkbox" [checked]="selectedTask.status === taskStatus.COMPLETED" (change)="onToggleStatus()"/>
+    <input type="checkbox" [checked]="selectedTask.status === taskStatus.COMPLETED" (change)="onToggleStatus()">
     <svg viewBox="0 0 35.6 35.6">
       <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
       <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
       <polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
     </svg>
   </div>
-  <span class="t-name ml-2">{{selectedTask.name}}</span>
+  <input type="text" class="t-name ml-2" [(ngModel)]="selectedTask.name" (focusout)="onFocusoutName($event)" (keyup.enter)="onEnterName($event)">
   <button class="t-delete" (click)="onDeleteTask()">
     <span class="material-symbols-outlined"> close </span>
   </button>
