@@ -7,3 +7,4 @@ export const featureKey = 'app';
 const selectFeature = createFeatureSelector<AppState>(featureKey);
 
 export const selectTasks = createSelector(selectFeature, (state) => taskSelectors.selectAll(state.tasks));
+export const selectSearchParams = createSelector(selectFeature, (state) => state.searchParams);

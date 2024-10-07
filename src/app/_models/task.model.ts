@@ -15,7 +15,7 @@ export interface TaskRequest {
 }
 
 export interface TaskSearchParams {
-  status: TaskStatus,
+  status?: TaskStatus,
   // ...
 }
 

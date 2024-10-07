@@ -1,23 +1,19 @@
 import { inject } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, exhaustMap } from 'rxjs/operators';
 import { AppActions } from '.';
 import { TaskService } from '../_services/task.service';
+import { Update } from '@ngrx/entity';
+import { Task } from '../_models';
 
 export const getTasks$ = createEffect(
   (_actions$ = inject(Actions), _task = inject(TaskService)) => {
     return _actions$.pipe(
       ofType(AppActions.getTasks),
-      exhaustMap(({ params }) =>
-        _task.getTasks(params).pipe(
-          map(tasks => {
-            let _tasks = tasks;
-            if (params && params.status) {
-              _tasks = _tasks.filter(task => task.status === params.status);
-            }
-            return AppActions.setTasks({ tasks: _tasks });
-          }),
+      exhaustMap(() =>
+        _task.getTasks().pipe(
+          map(tasks => AppActions.setTasks({ tasks })),
           catchError(error => {
             console.error(error);
             return of(error);
@@ -56,7 +52,11 @@ export const updateTask$ = createEffect(
       exhaustMap(({ id, payload }) =>
         _task.updateTask(id, payload).pipe(
           map(task => {
-            return AppActions.setTask({ task });
+            const updatedTask: Update<Task> = {
+              id: task.id,
+              changes: { ...task }
+            } 
+            return AppActions.updateTaskValue({ task: updatedTask });
           }),
           catchError(error => {
             console.error(error);

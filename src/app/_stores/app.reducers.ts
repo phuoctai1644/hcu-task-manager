@@ -5,16 +5,25 @@ import { taskAdapter, taskState } from './entities/task.entity';
 
 const initialState: AppState = {
   tasks: taskState,
+  searchParams: {}
 };
 
 export const appReducer = createReducer(
   initialState,
   on(AppActions.setTasks, (state, { tasks }) => ({
     ...state,
-    tasks: taskAdapter.setAll(tasks, state.tasks),
+    tasks: taskAdapter.addMany(tasks, state.tasks),
   })),
   on(AppActions.setTask, (state, { task }) => ({
     ...state,
     tasks: taskAdapter.addOne(task, state.tasks),
+  })),
+  on(AppActions.updateTaskValue, (state, { task }) => ({
+    ...state,
+    tasks: taskAdapter.updateOne(task, state.tasks),
+  })),
+  on(AppActions.setSearchParams, (state, { params }) => ({
+    ...state,
+    searchParams: params
   })),
 );
