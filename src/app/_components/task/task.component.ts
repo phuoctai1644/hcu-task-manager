@@ -43,10 +43,10 @@ export class TaskComponent implements OnChanges {
 
   patchValue(type: string, value: any) {
     const payload = { [type]: value };
+    this._store.dispatch(AppActions.updateTask({ id: this.task.id, payload }));
+  }
 
-    this._store.dispatch(AppActions.updateTask({
-      id: this.task.id,
-      payload
-    }));
+  onDeleteTask() {
+    this._store.dispatch(AppActions.deleteTask({ id: this.task.id }));
   }
 }

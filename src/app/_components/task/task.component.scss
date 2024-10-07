@@ -4,11 +4,33 @@
   padding: 0.75rem;
   background-color: white;
   border-radius: 10px;
+  position: relative;
+
+  &:hover {
+    .t-delete {
+      visibility: visible;
+    }
+  }
 
   &.completed {
     .t-name {
       text-decoration: line-through;
     }
+  }
+
+  .t-delete {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: red;
+    padding: 0.25rem 1rem;
+    visibility: hidden;
   }
 }
 

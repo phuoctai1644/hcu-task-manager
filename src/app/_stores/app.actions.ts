@@ -9,5 +9,6 @@ export const setTask = createAction('[Task/Store] setTask', props<{ task: Task }
 export const updateTask = createAction('[Task/API] updateTask', props<{ id: number, payload: any }>());
 export const updateTaskValue = createAction('[Task/Store] updateTaskValue', props<{ task: Update<Task> }>());
 export const deleteTask = createAction('[Task/API] deleteTask', props<{ id: number }>());
+export const deleteTaskSuccess = createAction('[Task/Store] deleteTask', props<{ id: number }>());
 
 export const setSearchParams = createAction('[Task/Store] setSearchParams', props<{ params: TaskSearchParams }>());

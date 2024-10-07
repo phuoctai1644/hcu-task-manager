@@ -22,6 +22,10 @@ export const appReducer = createReducer(
     ...state,
     tasks: taskAdapter.updateOne(task, state.tasks),
   })),
+  on(AppActions.deleteTaskSuccess, (state, { id }) => ({
+    ...state,
+    tasks: taskAdapter.removeOne(id, state.tasks),
+  })),
   on(AppActions.setSearchParams, (state, { params }) => ({
     ...state,
     searchParams: params

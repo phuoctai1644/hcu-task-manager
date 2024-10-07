@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
 import { Task, TaskRequest, TaskSearchParams } from '../_models';
 import { environment } from '../../environments/environment.local';
 
@@ -20,5 +19,9 @@ export class TaskService {
 
   updateTask(id: number, request: any) {
     return this.http.patch<Task>(`${environment.apiUrl}/tasks/${id}`, request);
+  }
+
+  deleteTask(id: number) {
+    return this.http.delete<Task>(`${environment.apiUrl}/tasks/${id}`);
   }
 }

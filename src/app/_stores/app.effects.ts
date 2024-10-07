@@ -68,3 +68,23 @@ export const updateTask$ = createEffect(
   },
   { functional: true }
 );
+
+export const deleteTask$ = createEffect(
+  (_actions$ = inject(Actions), _task = inject(TaskService)) => {
+    return _actions$.pipe(
+      ofType(AppActions.deleteTask),
+      exhaustMap(({ id }) =>
+        _task.deleteTask(id).pipe(
+          map(() => {
+            return AppActions.deleteTaskSuccess({ id });
+          }),
+          catchError(error => {
+            console.error(error);
+            return of(error);
+          })
+        )
+      )
+    );
+  },
+  { functional: true }
+);
